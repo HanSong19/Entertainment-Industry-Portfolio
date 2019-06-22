@@ -1,5 +1,4 @@
 #baseball
-'''
 import random
 
 comnum = random.sample(range(1,10),3)
@@ -14,7 +13,7 @@ while strike != 3:
     print(guessnum)
     for i in guessnum:
         for j in comnum:
-            if int(i) ==j :
+            if int(i) == j:
                 if guessnum.index(i) == comnum.index(j):
                     strike += 1
                 else:
@@ -22,7 +21,4 @@ while strike != 3:
     count+= 1    
     print("you have {} strike(s), {} ball(s), and tried {} times,".format(strike, ball, count))
 
-'''
-
- 
  

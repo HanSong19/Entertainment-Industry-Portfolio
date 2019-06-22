@@ -251,7 +251,7 @@ while True:
         print("strike")
     elif input_num == 
 '''
-'''
+
 ## the answer
 import random
 com = random.sample(range(1,10),3)
@@ -274,7 +274,7 @@ while strike !=3:
     check+=1
     print("스트라이크: %d, 볼: %d, 시도횟수: %d" %(strike, ball,check))
 print("정답")
-'''
+
 
 
 
