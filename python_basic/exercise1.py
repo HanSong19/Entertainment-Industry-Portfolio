@@ -55,7 +55,7 @@ for k,v in coffee.items(): #coffee에있는 거랑 order랑 비교, 여기서는
 '''
 
 ##덧셈 문제 
-# to add random, I need below
+# What I tried: to add random, I need below
 '''
 import random
 a= random.randint(1,50)
@@ -70,7 +70,7 @@ for i,j in a:
             print("10개 맞음")
 '''
 
-#답
+# 답
 '''
 import random
 count=0
@@ -251,7 +251,7 @@ while True:
         print("strike")
     elif input_num == 
 '''
-
+'''
 ## the answer
 import random
 com = random.sample(range(1,10),3)
@@ -274,7 +274,7 @@ while strike !=3:
     check+=1
     print("스트라이크: %d, 볼: %d, 시도횟수: %d" %(strike, ball,check))
 print("정답")
-
+'''
 
 
 
