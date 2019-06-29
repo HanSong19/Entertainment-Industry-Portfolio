@@ -52,6 +52,7 @@ while True:
         custlist.append(customer)
         print(custlist)
         page = len(custlist)-1
+        
     elif choice == "C":
         print("현재 고객 정보 조회")
 

@@ -53,8 +53,29 @@ m = p.findall("3 Pyth0n") #이 패턴인것을 다 찾고 싶다
 print(m)
 '''
 #finditer
+'''
 p = re.compile('[a-z]+') 
 m = p.finditer("as3 pyth0n") #이것이 iterator인가?
 print(m)
 for r in m: #iterator이면은 어디가 iterator인가?
     print(r)
+    '''
+
+import re
+p= re.compile("[a-z]+")
+m=p.search("pYthOn")
+
+print(m.group())
+print(m.start())
+print(m.end())
+print(m.span())
+
+a=[{'a':1, 'b':2}, {'a':1,'b':2}]
+print(0['a'])
+
+while True:
+    newa = int(input('type'))
+    for i in a:
+        if newa == a[i]['a']:
+            print("already exist")
+        else: break
