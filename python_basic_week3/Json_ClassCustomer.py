@@ -1,4 +1,4 @@
-import re,sys
+import re,sys,pickle,os,json
 
 class customer ():
     custlist = []
@@ -75,6 +75,11 @@ class customer ():
         else:
             print("there is no next page")
 
+    def fullSearch(self):
+        print("The entire customer list")
+        for i in self.custlist:
+            print(i)
+
     def changeinfo(self) :
         while True:
             idx = -1
@@ -113,7 +118,7 @@ class customer ():
                 del self.custlist[i]
                 
                 print(self.custlist)
-                page= len(self.custlist)-1
+                self.page= len(self.custlist)-1
                 print(self.page)
                 break
         if delok ==0:
@@ -121,7 +126,19 @@ class customer ():
             
     def exit(self):
         print("exit the program")
+        self.saveData()
         sys.exit()
+
+    def saveData(self):
+        with open ("./python_basic_week3/data.json", 'wt') as f:
+            json.dump(self.custlist,f, indent =4)
+            
+
+    def loadData(self):
+        if os.path.exists("./python_basic_week3/data.json"):
+            with open("./python_basic_week3/data.json",'rt') as f:
+                self.custlist = json.load(f)
+                self.page = len(self.custlist)-1
 
     def firstchoice(self):
     
@@ -130,8 +147,10 @@ class customer ():
             C= 현재/이전
             P= 이전 고객 정보 조회
             N= 다음 고객 정보 조회
+            A= 전체 고객 정보 조회
             U= 고객 정보 수정
             D= 고객 정보 삭제(D)
+            S= 저장
             Q= 고객 정보 종료(Q)
         ''').upper()
         return menu   
@@ -149,18 +168,24 @@ class customer ():
         if menu == 'N':
             self.nextinfo()
 
+        if menu == 'A':
+            self.fullSearch()
+
         if menu == 'U':
             self.changeinfo() 
 
         if menu == 'D':
             self.deleteinfo()
 
+        if menu == "S":
+            self.saveData()
+
         if menu == 'Q':
             self.exit()
 
     def __init__(self):
+        self.loadData()
         while True:
-            m= self.firstchoice()
-            self.exe(m)
+            self.exe(self.firstchoice())
 customer()
 
