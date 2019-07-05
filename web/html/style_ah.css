@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap");
+body{font: size 15pt; font-family: 'Noto Serif KR', serif;}
+
+.p1{background-color: rgb(134, 232, 163);}
+#p1{background-color: rgb(231, 141, 238);}
+div.p1{background-color: rgb(223, 188, 113);}
+a:hover{color:  rgb(66, 19, 236);}
+
+

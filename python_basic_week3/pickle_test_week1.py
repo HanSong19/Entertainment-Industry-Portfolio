@@ -1,5 +1,6 @@
-import sys
-print(sys.path)
+
+import sys, pickle
+'''print(sys.path)
 
 import pickle  ##객체를 그대로 저장하고 불러와서 쓸 수 있는것이 pickle의 가장 큰 장점이다
 data = {1:'python', 2:'you need'}
@@ -23,3 +24,13 @@ with open ("./python_basic_week3/test.pickle", 'rb') as f:
 data1 = pickle.loads(datab)
 print(data1)
 print(type(data1))
+'''
+
+f= open("./python_basic_week3/pickle_test_ah.py",'wb')
+data = [{'a':1, 'b':2}, 'apple', 'bee']
+pickle.dump(data,f)
+f.close()
+
+f=open("./python_basic_week3/pickle_test_ah.py", 'rb')
+pickle.load(f)
+print(data)

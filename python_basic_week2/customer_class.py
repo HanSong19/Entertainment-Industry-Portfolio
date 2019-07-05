@@ -1,4 +1,5 @@
-import re
+import re, sys, pickle,os, json
+
 
 class Customer: #class는 객체생성이 꼭 필요하다
     custlist = [] #custlist 는 list 안에 있기 때문에 밑에 def에서는 self.custlist 로 고쳐야 한다
@@ -121,6 +122,22 @@ class Customer: #class는 객체생성이 꼭 필요하다
                 print("존재하지 않는 정보 입니다.")
                 break
 
+    def quit(self):
+        while True:
+            print("system will be terminated")
+            self.savedata()
+            sys.exit()
+    def savedata(self):
+        with open("./python_basic_week2/customer_class_json.json", 'wt') as f:
+                json.dump(self.custlist, f)
+
+    def loaddata(self):
+        if os.path.exists("./python_basic_week2/customer_class_json.json"):
+            with open ("./python_basic_week2/customer_class_json.json", 'rt') as f:
+                self.custlist = json.load(f)
+                self.page = len(self.custlist)-1
+
+
     def firstinput(self):  #메뉴찍어줌
         choice = input('''
             다음중 하실 일을 골라주세요
@@ -156,11 +173,12 @@ class Customer: #class는 객체생성이 꼭 필요하다
             self.deleteData()
 
         elif choice == 'Q':
-            quit()
+            self.quit()
     
            
     def __init__(self):
         while True:
+            self.loaddata()
             mm=self.firstinput()
             print(mm)
             self.exe(mm)

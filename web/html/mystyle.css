@@ -3,8 +3,8 @@
 body{font-size:25pt; font-family:  'Nanum Pen Script', cursive;}
 
 
-/* .p1{background-color: rgb(146, 238, 187);}   */ class
-/* #p1{background-color: rgb(146, 167, 238);} */ 아이디
+.p1{background-color: rgb(146, 238, 187);}   
+#p1{background-color: rgb(146, 167, 238);} 
 div.p1{background-color: rgb(238, 248, 148);}
 a:hover{color: greenyellow;}
 /* 주 */
