@@ -11,9 +11,41 @@
             myWindow.close();
         }
         </script>
-    </head>
+
+        <script>
+        function mouseIn(elem){
+            elem.style.border = "2px solid red";
+            elem.style.frontSize = "30px";
+        }
+        function mouseOut(elem){
+            elem.style.border = "2px solid blue";
+            elem.style.fontSize = "16px";
+        }
+        </script>
+        <h1 id="title">마우스 이벤트</h1>
+        <a href = "#" id = "btn"><img src = "../img/dolphin.png"></a>    
+        <p id="img_src"></p>
+        <script>
+            var btn = document.getElementById("btn");
+            var s = document.getElementById("img_src");
+            btn.onmouseover = function(){
+                document.getElementById("title").innerHTML="마우스오버";
+                btn.firstChild.src="../img/starfish.png";
+                s.innerHTML = btn.firstChild.src;
+            }
+            btn.onmouseout = function(){
+                document.getElementById("title").innerHTML = "마우스 아웃"
+                btn.firstChild.src="../img/dolphin.png";
+                s.innerHTML = btn.firstChild.src;
+            
+            }
+        </script>
+</head>
     <body>
         <button onclick = "openWin()"> Open "myWindow"</button>
         <buttom onclick = "closeWin()">Close "myWindow</buttom>
+    <div style="background-color: lightblue"
+    onmouseover="mouseIn(this)" onmouseout="mouseOut(this)"> 마우스이벤트</div>
+    
     </body>
 </html>
