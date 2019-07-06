@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>changing color</title>
+    </head>
+    <body>
+    <h1 id = "test" style = "color: blue; background-color: purple;"> This is a heading</h1>
+    <script>
+    function func(){
+        var e = document.getElementById("test");
+        e.style.color = "red";
+        e.style.backgroundColor = "yellow";
+    }
+    </script>
+    <button onclick="func()">클릭!</button>
+    </body>
+</html>

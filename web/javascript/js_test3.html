@@ -1,0 +1,34 @@
+<!DOCTYPE html></body>
+<html>
+    <head>
+        <title>var 연습</title>
+    </head>
+    <body>
+    <h1>var 연습</h1>
+    <script type = "text/javascript">
+    var season = prompt("좋아하는 계절을 입력하세요","봄");
+    var message = "";
+    var img = "";
+    switch(season){
+    case "봄":
+        message = "봄을 좋아하시네요";
+        img = "spring.jpg";
+        break;
+    case "여름":
+        message = "여름을 좋아하시네요";
+        img = "summer.jpg";
+        break;
+    case "가을":
+        message = "가을을 좋아하시네요";
+        img = "fall.jpg";
+        break; 
+    case "겨울":
+        message = "겨울을 좋아하시네요";
+        img = "winter.jpg";
+        break; 
+    default:
+        alert("번호를 잘못 입력했습니다.(봄, 여름 가을, 겨울)");      
+    }
+    document.write("<h2>" + message + "<h2>");
+    document.write("<img src = '../img/" + img + "'>");
+    </script>

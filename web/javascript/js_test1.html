@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF=8">
+        <title>자바스크립트 연습</title>
+    </head>
+    <body>
+    <input type = "button" value = "please click here" onclick="alert('ok')">
+    <!-- 외부파일로 실행 -->
+    <script src = "js_test.js"></script>
+    <br> 
+    <script>
+     
+    var s;
+    s = 100; 
+    document.write(s+"<br>");
+    document.write(typeof(s) + "<br>");
+    s="홍길동";
+    document.write(s + "<br>");
+    document.write(typeof(s)+"<br>");
+    var c = prompt("내용을 입력 하세요");
+    document.write(c);
+    var user = confirm("당신의 이름은" + c );
+    if(user == true){
+        docmuent.write("확인" +"<br>");
+        docmuent.write(user + "<br>");
+    }else{
+        document.write("취소"+"<br>");
+        document.write(user + "<br>");
+    }
+    
+    function calc(){
+        var x = document.getElementById("x").value;
+        var y = ducument.getElementById("y").value;
+        sum = parseInt(x)+parseInt(y);
+        document.getElementById("sum").value = sum;
+    }
+    </script>  
+    <from name = "myform" method = "post">
+    <br>    
+    첫번째 정수: <input type = "text" id = 'x' value = "100"><br>
+    두번째 정수: <input type = "test" id = 'y'><br>
+    합계:<input id = "sum"><br>
+    <input type = "button" value = "계산" onclick = "calc()">
+    </from> 
+    </body>
+</html>
