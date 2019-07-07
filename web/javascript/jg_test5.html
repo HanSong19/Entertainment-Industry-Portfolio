@@ -1,0 +1,26 @@
+<!DOCTYPE html></head>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <head>
+    <script>
+        $(function(){
+            $("#btn1").mouseover(function(){
+                $("p").css("background-color","yellow");
+            });
+            $("btn1").mouseout(function(){
+                $("p").css("background-color","purple");
+            });
+            $("#btn2").hover(function(){
+                $("p").css("background-color","red");
+            },function(){
+                $("p").css("background-color","blue");
+            });
+
+            });
+    
+    </script>
+    <button id = "btn1">mouseover/out</button>
+    <button id = "btn2">hover</button>
+    <p>내용</p>
+    </head>
+    </html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <head>
+        <meta charset = "UTF-8">
+        <title>객체 조작 메소드html()</title>
+        <script>
+        $(function(){
+            var val = $("user_name").val();
+            $("#my_name").val(val);
+            var copy = $("#user_name").clone();
+            $("#my_name").css("color","red");
+        });
+        </script>
+        </head>
+        <body>
+            <p>
+            <input type = "text" name ="user_name" id = "user_name" value = "홍길동">
+            </p>
+            <p>
+            <input type = "text" name="my_name" id = "my_name">                
+            </p>
+        </body>
+        </html>
