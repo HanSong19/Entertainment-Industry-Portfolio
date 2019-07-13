@@ -43,6 +43,7 @@ def login_post():          #http://127.0.0.1:5000/login/?name=han
     password= request.form['password']
     return render_template('index.html', username = username, password = password)
 
+
 if __name__ == '__main__': #원래 함수는 호출하기전에 실행이 안되는데 run은 이것들을 다 실행 해버리는 것이다. 다른파일에서 이걸 열면
     app.run(debug=True)              #함수들이 다 돌아가는것을 원치 않기때문에. 지금은 다른파일에 붙여서 실행하는건 아니라 필요는 없지만은 다르사람이
                            # 이 파일을 열어서 실행할때는 이 if절이 반드시 들어가있어야 한다. 

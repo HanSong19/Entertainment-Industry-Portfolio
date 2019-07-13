@@ -1,0 +1,53 @@
+{% extends 'movie_default.html' %}
+
+{% block title %} main page {% endblock %}
+
+{% block contents %}
+  <div class="container-fluid"  >
+      <div class="jumbotron" style ="background-image: url('../img/background.jpg')" stype= "background-size: cover";></style>
+              <h1 class="display-4">Welcome to Hanbyuls' website</h1>
+              <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+              <hr class="my-4">
+              <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+              <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </div>
+      </div>
+      <!-- card -->
+      <div class="container-fluid">
+          <div class="card-deck">
+              <div class="card">
+                <a href = "Aladin_bootstrap.html"><img src="../static/Aladin.jpeg" class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                  <h5 class="card-title">Aladin</h5>
+                  <p class="card-text">'Click the image for the details of the movie''.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+              </div>
+              <div class="card">
+                <a href = "boyhood.html"><img src ="../static/boyhood.jpg" class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                  <h5 class="card-title">Boy Hood</h5>
+                  <p class="card-text">This shows the python code that analyses the sales of movie 'Boyhood'.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+              </div>
+              <div class="card">
+                <a href = "toystory.html"><img src ="../static/toystory4.jpg", heithg= 110%, class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                  <h5 class="card-title">ToyStory4</h5>
+                  <p class="card-text">This shows the python code that analyses the sales of movie 'Toy Story 4'.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+  {% endblock %}  
+    
+ 
