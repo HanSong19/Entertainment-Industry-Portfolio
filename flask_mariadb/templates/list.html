@@ -1,0 +1,33 @@
+{% extends 'movie_default.html' %}
+
+{% block title %}
+사용자 리스트
+{% endblock %}
+
+
+{% block contents%}
+
+    <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">id</th>
+                    <th scope="col">email</th>
+                    <th scope="col">address</th>
+                    <th scope="col">password</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr onclick="location.href='/content/{{user.userid}}'">
+                    <th scope="row" >1</th>
+                    <td>{{user['userid']}}</td>
+                    <td>{{user['email']}}</td>
+                    <td>{{user['useraddress']}}</td>
+                    <td>{{user['password']}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+
+{% endblock %}

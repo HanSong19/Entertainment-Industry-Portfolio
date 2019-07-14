@@ -1,0 +1,36 @@
+{% extends 'movie_default.html' %}
+
+{% block title %}
+사용자 리스트
+{% endblock %}
+
+{% block contents%}
+
+<table class="table table-hover">
+    
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">id</th>
+                <th scope="col">email</th>
+                <th scope="col">address</th>
+                <th scope="col">password</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <th scope="row" >1</th>
+                <td>{{user['userid']}}</td>
+                <td>{{user['email']}}</td>
+                <td>{{user['useraddress']}}</td>
+                <td>{{user['password']}}</td>
+            </tr>
+           
+        </tbody>
+        </table>
+<br>
+<button type="button" class="btn btn-primary"  onclick = "location.href='/updateform/{{user.userid}}'">수정</button>
+<button type="button" class="btn btn-dark" onclick="location.href='/delete/{{user.userid}}'">삭제</button>
+
+{% endblock %}
