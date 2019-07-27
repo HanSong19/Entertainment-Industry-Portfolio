@@ -43,7 +43,7 @@
     <br> 
               
     <div class="container-fluid"  >
-    <div class="jumbotron" style ="background-image: url('../img/background.jpg')" stype= "background-size: cover";></style>
+    <div class="jumbotron" style ="background-image: url('../img/background.jpg')" style= "background-size: cover";></style>
             <h1 class="display-4">Welcome to Hanbyuls' website</h1>
             <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
             <hr class="my-4">
@@ -54,40 +54,26 @@
     <!-- card -->
     <div class="container-fluid"  >
         <div class="card-deck">
-            <div class="card">
-              <a href = "Aladin_bootstrap.html"><img src="../img/Aladin.jpeg" class="card-img-top" alt="..."></a>
-              <div class="card-body">
-                <h5 class="card-title">Aladin</h5>
-                <p class="card-text">'Click the image for the details of the movie''.</p>
+            {% for movieInfo in movieList: %}
+            <div class="card" style = "width: 18rem;">
+                <img src="{{movieInfo['current_movie_img']}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{movieInfo['current_movie_title']}}</h5>
+                <p class="card-text">
+                  <span style="color: crimson">등급: {{movieInfo['current_movie_genre']}}</span><br />
+                  <span style = "color: goldenrod">상영날짜: {{movieInfo['current_movie_open']}}</span> </p> <br/>
+                  <span style = "color:green">영화줄거리: {{movieInfo['current_movie_story']}}</span> </p> <br/>
+                  <a href="/movie_detail/{{movieInfo['m_no']}}/{{movieInfo['current_movie_title']}}" class="btn btn-primary">상세보기</a>  
               </div>
               <div class="card-footer">
                 <small class="text-muted">Last updated 3 mins ago</small>
               </div>
             </div>
-            <div class="card">
-              <a href = "boyhood.html"><img src ="../img/boyhood.jpg" class="card-img-top" alt="..."></a>
-              <div class="card-body">
-                <h5 class="card-title">Boy Hood</h5>
-                <p class="card-text">This shows the python code that analyses the sales of movie 'Boyhood'.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
-            <div class="card">
-              <a href = "toystory.html"><img src ="../img/toystory4.jpg", heithg= 110%, class="card-img-top" alt="..."></a>
-              <div class="card-body">
-                <h5 class="card-title">ToyStory4</h5>
-                <p class="card-text">This shows the python code that analyses the sales of movie 'Toy Story 4'.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-              </div>
-            </div>
-          </div>
+            {% endfor %}
+        </div>
         </div>
         
-  
+       
 
     
 
