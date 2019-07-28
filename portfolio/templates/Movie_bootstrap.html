@@ -54,10 +54,10 @@
 
     <!-- card -->
 
-        
-<div class="row" id="ajaxcard">
+<div class="container">      
+<div class="row" id="ajaxcard" style = "background-size: cover";>
     {% for movieInfo in movieList: %}
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 16rem;">
         <img src="{{movieInfo['current_movie_img']}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{movieInfo['current_movie_title']}}</h5>
@@ -70,6 +70,7 @@
     </div>
     {% endfor %}
 </div>
+</div>  
         
        
 

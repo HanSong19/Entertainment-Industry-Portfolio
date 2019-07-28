@@ -57,9 +57,7 @@ def formresult():
         html = driver.page_source
 
         soup = BeautifulSoup(html,'html.parser')
-        for moviesoso in range(len(movie_img)):
-            movie_img_Processing.append(movie_img[moviesoso].replace("//img1.daumcdn.net/thumb/C236x340/?fname=","")) 
-
+        
 
         #영화 타이틀 추출.
         movietitles = soup.find_all('a',class_='name_movie #title')
@@ -76,10 +74,11 @@ def formresult():
             else:
                 movie_genre.append(movieGenre.text)
         #영화 이미지 추출
-        movieImgs = soup.select("div span img")
+        movieImgs = soup.select("div span img.img_g")
         
         for movieImg in movieImgs:
             movie_img.append(movieImg['src'])
+
         #영화개봉 날짜 추출
         movieOpens = soup.find_all('span',class_='info_state')
 
@@ -107,7 +106,7 @@ def formresult():
     db='movie',
     charset='utf8mb4',
     cursorclass=pymysql.cursors.DictCursor)
-
+    print(movie_img_Processing)
     try:
         with conn.cursor() as cursor:
             sql="delete from current_movie"
