@@ -1,0 +1,34 @@
+<html>
+    <head>
+          {% include "import.html" %}
+          <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <title>영화 게시판 글쓰기</title>
+    </head>
+    
+     <body>
+    
+            {% include "menu.html" %}
+<div class="container" align="center">
+        <div style="height: 50px;"></div>
+        <form action="board_write" method="POST" enctype="multipart/form-data">
+            <fieldset style="width: 380px">
+                <legend>영화 게시판 글등록</legend>
+            제목: <input type="text" name="title" placeholder="제목"/><br />
+            작성자: <input type="text" name="writer" class="form-control" /><br />
+            평점 : <select name="good">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
+            내용:<textarea name="content" class="form-control"></textarea> 
+            <input type="hidden" name="m_no" value="{{m_no}}"/>
+            <input type="submit" value="등록하기" class="btn btn-primary"/>
+              </fieldset>
+        </form>
+      </div>
+    </body>
+</html>

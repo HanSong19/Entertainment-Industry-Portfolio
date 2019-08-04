@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+      {% include "import.html" %}
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+      {% include "menu.html" %}
+       
+   <h1 align="center" style="margin-top: 7px">{{list['userid']}}님의 회원정보</h1>
+    <div class="container-fluid">
+        <table class="table table-hover table-dark">
+            <thead>
+              <tr>
+                <th scope="col">아이디</th>
+                <th scope="col">비밀번호</th>
+                <th scope="col">이름</th>
+                <th scope="col">나이</th>
+                <th scope="col">이메일</th>
+                <th scope="col">주소</th>
+                <th scope="col">성별</th>
+                <th scope="col">전화번호</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+                
+              <tr>
+                <td>{{list['userid']}}</a></td>
+                <td>{{list['userpw']}}</td>
+                <td>{{list['username']}}</td>
+                <td>{{list['userage']}}</td>
+                <td>{{list['useremail']}}</td>
+                <td>{{list['useradd']}}</td>
+                <td>{{list['usergender']}}</td>
+                <td>{{list['usertel']}}</td>
+                
+              </tr>
+                
+            </tbody>
+          </table>
+            <a href="/updateform/{{list['userid']}}"><input type="button" value="수정" class="btn btn-primary"/></a>
+            
+          <a href="/deleteform/{{list['userid']}}"><input type="button" id="del" value="삭제" class="btn btn-danger"/></a>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+             삭제
+            </button>
+          <a href="/list"><input type="button" value="목록으로" class="btn btn-info"/></a>
+          <button onclick="location.replace('/list');">목록으로</button>
+    </div>
+       
+
+    <script>
+      $(function(){
+        
+
+      });
+    </script>
+
+   <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">삭제</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...삭제하시겠습니까?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger"><a href="/deleteform/{{list['userid']}}">삭제</a></button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+     <body>
+</html>

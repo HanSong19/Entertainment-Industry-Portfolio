@@ -1,0 +1,37 @@
+<html>
+    <head>
+          {% include "import.html" %}
+          <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <title>Form 양식 연습</title>
+    </head>
+    <script>
+            $(function() {
+              $( "#datepicker1" ).datepicker({
+                dateFormat: 'yy-mm-dd'
+              });
+            });
+            </script>
+     <body>
+    
+            {% include "menu.html" %}
+
+        
+        <div class="container" align="center">
+        <form action="formresult" method="POST" enctype="multipart/form-data">
+            <fieldset style="width: 380px; border: 1" >
+                <legend>영화등록</legend>
+             영화제목: <input type="text" name="title" placeholder="제목"/><br />
+            감독: <input type="text" name="mdir" class="form-control" /><br />
+            주연배우 : <input type="text" name="act" class="form-control"/><br />
+            등급:   <input type="text" name="grade" class="form-control"/><br />
+            개봉일: <input type="text" id="datepicker1" id="datepicker1" name="date" class="form-control"/><br />
+            줄거리:<textarea name="content" class="form-control"></textarea> 
+            이미지:<input type="file" class="form-control" name="img"/>
+            <input type="submit" value="등록하기" class="btn btn-primary"/>
+                </fieldset>
+        </form>
+      </div>
+    </body>
+</html>

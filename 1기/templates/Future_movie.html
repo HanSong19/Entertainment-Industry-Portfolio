@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+  <head>
+    {% include "import.html" %}
+    
+      <link href="/static/css/main.css"/>
+    <title>Hello, world!</title>
+  </head>
+ 
+  <body>
+    <script>
+      function chk(){
+       $.ajax(
+          {
+            type:"POST",
+            data:{"stype":$("#stype").val(),"text":$('#text').val()},
+            url:"/ajaxmain",
+            dataType:"json",
+            success:function(to_be_movieList){
+              console.log(to_be_movieList);
+              maketable(to_be_movieList);
+            }
+          });
+        }
+        function maketable(to_be_movieList){
+            $("#ajaxcard").html(""),
+            $(to_be_movieList).each(function(index,movieInfo){
+            $("#ajaxcard").append(
+            '<div class="card" style="width: 18rem;">'+
+            '<img src='+movieInfo.show_movie_img+'class="card-img-top" alt="...">'+
+            '<div class="card-body">'+
+              '<h5 class="card-title">'+movieInfo.show_movie_title+'</h5>'+
+              '<p class="card-text">'+
+                '개봉날짜: '+movieInfo.show_movie_open+'</p>'+
+              '<a href="/movie_detail/'+show.m_no+'" class="btn btn-primary">상세보기</a>'+
+            '</div>'+
+        '</div>'
+            );
+        });
+        }
+      </script>
+
+
+    {% include "menu.html" %}
+<div style="height: 15px"></div>
+    <h1 align="center">영화정보관리</h1>
+
+    <div class="container">
+        <div class="container">
+            <div class="row pt-1 pb-1">
+                <div class="col-lg-12">
+                    <h4 class="text-center">Movie Information Management Program</h4>
+                    <h6 class="text-center">you can serch about movie</h6>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/static/img/main2.jpg"  style="height: 400px;" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/static/img/mainmovie.jpg" style="height: 400px;" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </section>
+        <section class="search-sec">
+            <div class="container">      
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                    <select class="form-control search-slt" id="stype" name="stype" >
+                                        <option>선택</option>
+                                        <option value="show_moive_title">제목</option>
+                                        <option value="show_movie_open">상영날짜</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                    <input type="text" id="text"name="text" class="form-control search-slt" placeholder="Enter Drop City">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                    <button type="button" onclick="chk();" class="btn btn-danger wrn-btn">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </section>
+        <div style="height: 30px;"></div>
+<h3 align="center">Movie List</h3>
+<hr />
+
+<div class="row" id="ajaxcard">
+        {% for movieInfo in to_be_movieList: %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{movieInfo['show_movie_img']}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{movieInfo['show_movie_title']}}</h5>
+              <p class="card-text">
+                <!--<span style="color: crimson">등급: {{movieInfo['current_movie_genre']}}</span><br />-->
+                상영날짜: {{movieInfo['show_movie_open']}}</p>
+              <a href="/show_movie_detail/{{movieInfo['m_no']}}" class="btn btn-primary">상세보기</a>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+
+    </div>
+  
+  </body>
+</html>

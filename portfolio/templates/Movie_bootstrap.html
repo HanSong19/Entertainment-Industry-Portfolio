@@ -63,9 +63,10 @@
           <h5 class="card-title">{{movieInfo['current_movie_title']}}</h5>
           <p class="card-text">
             <span style="color: crimson">등급: {{movieInfo['current_movie_genre']}}</span><br />
-            <span style = "color: goldenrod">상영날짜: {{movieInfo['current_movie_open']}}</span> </p> <br/>
-            상영날짜: {{movieInfo['current_movie_open']}}</p>
+            <span style = "color: blue">상영날짜: {{movieInfo['current_movie_open']}}</span> </p> <br/>
+            
           <a href="/movie_detail/{{movieInfo['m_no']}}/{{movieInfo['current_movie_title']}}" class="btn btn-primary">상세보기</a>
+        
         </div>
     </div>
     {% endfor %}

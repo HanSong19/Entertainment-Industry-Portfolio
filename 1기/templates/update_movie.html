@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+
+      {% include "import.html" %}
+    
+    <title>영화정보수정</title>
+  </head>
+  <body>
+    
+      {% include "menu.html" %}
+
+      <div style="height: 50px;"></div>
+<div class="container"align="center">
+    
+    <form action="/update_movie" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>수정하기</legend>
+         영화제목: <input type="text" name="title" value="{{list['m_title']}}"/><br />
+        감독: <input type="text" name="mdir" class="form-control" value="{{list['m_dir']}}" /><br />
+        주연배우 : <input type="text" name="act" class="form-control" value="{{list['m_act']}}"/><br />
+        등급:   <input type="text" name="grade" class="form-control" value="{{list['m_grade']}}"/><br />
+        개봉일: <input type="text" id="datepicker1" name="date" class="form-control" value="{{list['m_date']}}"/><br />
+        줄거리:<textarea name="content" class="form-control" cols="100" rows="15">{{list['m_content']}}</textarea> 
+        이미지:<input type="file" class="form-control" name="img"/><br />
+        <input type="hidden" name="no" value="{{list['m_no']}}" />
+        <input type="submit" value="수정하기" class="btn btn-primary"/>
+        <a href="/movie_detail/{{list['m_no']}}" class="btn btn-success">취소</a>
+            </fieldset>
+    </form>
+  
+  
+  </body>
+</html>

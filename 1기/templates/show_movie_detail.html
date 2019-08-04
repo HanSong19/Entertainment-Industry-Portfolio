@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+
+      {% include "import.html" %}
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>      
+    <title>정보수정</title>
+  </head>
+  <body>
+      {% include "menu.html" %}
+      <div style="height: 50px;"></div>
+<div class="container">
+      <div class="row">
+          <div class="col-12">
+              <div class="card">
+                  <div class="card-body p-0">
+                      <div class="row p-5">
+                          <div class="col-md-4">
+                              <img src="{{movieInfo['show_movie_img']}}" style="width: 300px;height: 500px">
+                          </div>
+                          <div class="col-md-4 text-center">
+                              <div class="row">
+                                  <p>상영관</p>
+                              </div>
+                              <hr />
+                              <div class="row">
+                                  <p>주요 키워드</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row pb-5 p-5" style="margin-left: 25px">
+                        <table>
+                          <tr>
+                            <th style="width: 100px">개봉일</th>
+                          </tr>
+                          <tr>
+                            <td>{{movieInfo['show_movie_open']}}</td>
+                          </tr>
+
+                        </table>
+                      </div>
+                      <hr class="my-5">
+                      
+                      <div class="row pb-5 p-5">
+                          
+                              <p class="font-weight-bold mb-4">줄거리</p>
+                              <p>{{movieInfo['show_movie_story']}}</p>
+                      </div>
+                    </div>
+              </div>
+          </div>
+      </div>
+      
+      <div class="text-light mt-5 mb-5 text-center small">by : <a class="text-light" target="_blank" href="http://totoprayogo.com">totoprayogo.com</a></div>
+      <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" value="삭제"/>
+      <a href="/update_movie/{{movieInfo['m_no']}}" class="btn btn-info">수정하기</a>
+      <h6 align="right"><a href="/moviemain" class="btn btn-success">메인으로</a></h6>
+  </div>
+  <div class="container">
+    <h4>영화감상문</h4>
+    <hr />
+    <table id="example">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>이름</th>
+          <th>평점</th>
+          <th>날짜</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for bitem in board: %}
+        <tr>
+          <td>{{bitem['b_no']}}</td>
+          <td><a href="/board_content/{{bitem['b_no']}}">{{bitem['b_title']}}</a></td>
+          <td>{{bitem['writer']}}</td>
+          <td>{{bitem['good']}}</td>
+          <td>{{bitem['b_date']}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/board_write/{{movieInfo['m_no']}}" class="btn btn-primary">글쓰기</a>
+  </div>
+  
+  
+  
+    
+        
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">삭제하시겠습니까?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         삭제하시겠습니까?
+        </div>
+        <div class="modal-footer">
+            <a href="/delete_movie/{{movieInfo['m_no']}}" class="btn btn-danger">삭제하기</a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  var table = $('#example').DataTable();
+ 
+table.on( 'draw', function () {
+    alert( 'Table redrawn' );
+} );
+</script>
+  </body>
+</html>

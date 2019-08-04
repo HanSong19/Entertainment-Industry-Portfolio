@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+      {% include "import.html" %}
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+      {% include "menu.html" %}
+      <div style="height: 50px"></div>
+    <div class="container">
+
+    <div class="row paddingBottom20">
+        <div class="container col-4">
+            <div class="row">
+                <h6 class="text-center col-12 mb-0">영화 감상</h6>
+                <sub class="text-right text-muted col-12"><a href="#" tabindex="-1"><i class="far fa-edit"></i></a></sub>
+            </div>
+            <div class="dropdown-divider mb-3"></div>
+            <div class="form-group row">
+                <label for="firstName" class="col-4 col-form-label-sm text-right">제목:</label> 
+                <div class="col-8">
+                    <div class="input-group"> 
+                        <input id="firstName" name="text" type="text" class="form-control form-control-sm" value="{{list['b_title']}}" readonly>
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group row align-items-center">
+                <label for="lastName" class="col-4 col-form-label-sm text-right">작성자:</label> 
+                <div class="col-8">
+                  <div class="input-group"> 
+                    <input id="lastName" name="text" type="text" class="form-control form-control-sm" value="{{list['writer']}}" readonly>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group row align-items-center">
+                <label for="position" class="col-4 col-form-label-sm text-right">내용:</label> 
+                <div class="col-8">
+                  <div class="input-group"> 
+                      <textarea readonly>{{list['b_content']}}</textarea><br />
+                  </div>
+                </div>
+            </div>
+            <div class="form-group row align-items-center">
+                <label for="emailAddress" class="col-4 col-form-label-sm text-right">평점:</label> 
+                <div class="col-8">
+                  <div class="input-group"> 
+                    <input id="emailAddress" name="text" type="email"  class="form-control form-control-sm extendable"value="{{list['good']}}" readonly>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group row align-items-center">
+                <label for="office" class="col-4 col-form-label-sm text-right">날짜:</label> 
+                <div class="col-8">
+                  <div class="input-group">
+                    <input id="office" name="text" class="form-control form-control-sm" value="{{list['b_date']}}" readonly>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group row align-items-center">
+                
+                <div class="col-8">
+                  <div class="input-group">
+                      <a href="/movie_detail/{{list['m_no']}}"><input type="button" value="목록으로" class="btn btn-info"/></a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">삭제</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...삭제하시겠습니까?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger"><a href="/deleteform/{{list['userid']}}">삭제</a></button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+     <body>
+</html>

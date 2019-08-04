@@ -1,11 +1,38 @@
 from flask import Flask,request,render_template,redirect,jsonify
-import pymysql,re,time, os
+import pymysql,re,time, os, sys,json, time, urllib.request,kobis_info,kobis_graph
 from bs4 import BeautifulSoup
-import urllib.request
 from selenium import webdriver as wd
+import pandas as pd
+import numpy as np
+from soynlp.tokenizer import RegexTokenizer
+from soynlp.noun import LRNounExtractor
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+from PIL import Image
 
+tmrvl=[]
+url="https://movie.naver.com/movie/running/current.nhn"
+response = urllib.request.urlopen(url)
+soup=BeautifulSoup(response,'html.parser')
+table=soup.select('dt.tit a')
+for result3 in table:
+        mtitle=str(result3.string)
+        mcode=str(result3.attrs['href'])
+        i = str(re.findall('\d+', mcode)[0])
+        tmcode=tuple([i])
+        tmtitle=tuple([mtitle])
+        tmrvl.append(tmtitle+tmcode)
+conn=pymysql.connect(host='127.0.0.1',user='root',password='qwer1234',db='movie',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
+c=conn.cursor()
+#마리아 db에 넣을댸는 ??가아니고 %s로 써야됨
+sql="INSERT IGNORE INTO test(title,codem) VALUES(%s,%s)"
+c.executemany(sql, tmrvl)
+conn.commit()
+conn.close()
 
 #다음의 웹사이트 드라이버와 연결한다
+
 app = Flask(__name__)
 
 @app.route('/moviemain')#주소임
@@ -28,7 +55,7 @@ def mainmovie():
 
 @app.route('/')
 def formresult():
-    driver = wd.Chrome(executable_path='portfolio/chromedriver')
+    driver = wd.Chrome(executable_path='portfolio/data/chromedriver')
 
     url = "https://movie.daum.net/premovie/released"
     driver.get(url)
@@ -125,8 +152,105 @@ def formresult():
     return redirect('/moviemain')
 
 
+#영화상세
+@app.route('/movie_detail/<m_no>/<current_movie_title>')#주소임
+def detail(m_no,current_movie_title):
+    
+    conn=pymysql.connect(host='127.0.0.1',
+    user='root',
+    password='qwer1234',
+    db='movie',
+    charset='utf8mb4',
+    cursorclass=pymysql.cursors.DictCursor)
+    try:
+        with conn.cursor() as cursor:
+            sql='select * from current_movie c inner join test t on c.current_movie_title = t.title where current_movie_title = %s;'
+            cursor.execute(sql,(current_movie_title))
+            result=cursor.fetchone() #하나만 가져올떄
+
+            sql='select * from current_movie where current_movie_title = %s;'
+            cursor.execute(sql,(current_movie_title))
+            result1=cursor.fetchone() #하나만 가져올떄
+
+            sql='select * from board where m_no= %s;'
+            cursor.execute(sql,(m_no))
+            board=cursor.fetchall()
+    finally:
+        conn.close()
+    if result is not None:    
+        tmrvl=[]
+        movieName = result['codem']
+
+        for page in range(1,200):
+            url="https://movie.naver.com/movie/bi/mi/review.nhn?code="+str(movieName)+"&page="+str(page)
+            response = urllib.request.urlopen(url)
+
+            soup=BeautifulSoup(response,'html.parser')
+            table=soup.select('ul.rvw_list_area li a')
+            for result3 in table:
+                mrv=str(result3.string)
+                tmrv=tuple([mrv])
+                tmrvl.append(tmrv)
+                #tmrv1=str(tmrv)
+                #f.write(tmrv1)
+        df=pd.DataFrame(tmrvl)
+
+        def preprocessing(text):
+            # 개행문자 제거
+            text = re.sub('\\\\n', ' ', text)
+            return text
+        
+        tokenizer = RegexTokenizer()
+        stopwords_kr = ['하지만', '그리고', '그런데', '저는','제가',
+                        '그럼', '이런', '저런', '합니다',
+                        '많은', '많이', '정말', '너무','[',']','것으로','했습니다','했다'] 
+
+        sentences = df[0].apply(preprocessing)
+
+        # soynlp로 명사 추출하기
+        noun_extractor = LRNounExtractor(verbose=True)
+        noun_extractor.train(sentences)
+        nouns = noun_extractor.extract()
+    
+        # 이미지 파일위에 출력하기
+        img = Image.open('portfolio/static/img/cloud.png')
+        img_array=np.array(img)
+
+        wordcloud = WordCloud( font_path = '/Library/Fonts/NanumBarunGothic.ttf', 
+                            stopwords = stopwords_kr,
+                            background_color = 'white', 
+                            mask=img_array,
+                            width = 800, height = 600).generate(' '.join(nouns))
+        plt.figure(figsize = (15 , 10))
+        plt.imshow(wordcloud)
+        plt.axis("off")
+        #plt.show()  
+        url1="portfolio/static/img/wordcloud/" + current_movie_title + ".png"
+        wordcloud.to_file(url1)
+    
+    kobis_info.info()
+    
+    #graph그리는것
+    df = pd.read_csv(r'portfolio/data/cine.csv',engine='python',encoding='utf-8')
+    temp = df[df['movieNm'] == current_movie_title]
+    #print(temp[['salesAmt','targetDt','movieNm']])
+    #print(temp.dtypes)
+    mpl.rc('font', family='/Library/Fonts/NanumBarunGothic.ttf') #한글 폰트 설정
+    plt.bar(temp['targetDt'].astype(str),temp['salesAmt']) 
+    plt.title('일별 매출액 막대 그래프')
+    plt.xlabel('날짜')
+    plt.ylabel('총매출액')
+    plt.xticks(fontsize=13, rotation=90)
+    url1="portfolio/static/img/chart/" + current_movie_title + ".png"
+    plt.savefig(url1) 
+    
+    return render_template('movie_detail.html', wordInfo=result, board=board, movieInfo=result1)
+
+
+
 if __name__ == "__main__":
     app.run(debug = True)
+
 
 '''
 print(movie_title)
