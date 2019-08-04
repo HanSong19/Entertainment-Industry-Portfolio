@@ -14,7 +14,7 @@ def graph_m(title):
     plt.title('일별 매출액 막대 그래프')
     plt.xlabel('날짜')
     plt.ylabel('총매출액')
-    plt.xticks(fontsize=13, rotation=90)
+    plt.xticks(fontsize=10, rotation=90)
     url1="portfolio/static/img/chart/" + title + ".png"
     plt.savefig(url1)
 

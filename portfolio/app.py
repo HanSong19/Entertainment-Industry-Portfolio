@@ -227,7 +227,7 @@ def detail(m_no,current_movie_title):
         #plt.show()  
         url1="portfolio/static/img/wordcloud/" + current_movie_title + ".png"
         wordcloud.to_file(url1)
-    
+    '''
     kobis_info.info()
     
     #graph그리는것
@@ -243,7 +243,7 @@ def detail(m_no,current_movie_title):
     plt.xticks(fontsize=13, rotation=90)
     url1="portfolio/static/img/chart/" + current_movie_title + ".png"
     plt.savefig(url1) 
-    
+    '''
     return render_template('movie_detail.html', wordInfo=result, board=board, movieInfo=result1)
 
 
