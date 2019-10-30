@@ -1,4 +1,3 @@
 # pythonprojects
 ##practice
-###pull
-### push
+
